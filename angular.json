@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "ccs-app"
+  "defaultProject": "ccs-app",
+  "cli": {
+    "analytics": false
+  }
 }

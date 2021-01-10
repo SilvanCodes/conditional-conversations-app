@@ -1,0 +1,17 @@
+<el-stack margin="s5">
+    <ng-container *ngIf="conversation$ | async as conversation">
+        <h3>Conversation {{ conversation.id }} Messages</h3>
+        <div>
+            <el-stack>
+                <p *ngFor="let message of messages$ | async">
+                    <b>{{ message.sender.nickname }}:</b>{{ message.text }}
+                </p>
+                
+            </el-stack>    
+        </div>
+        <label>
+            Send message:
+            <input type="text" [formControl]="sendMessageFormControl" (keyup.enter)="sendMessage$.next()">
+        </label>
+    </ng-container>
+</el-stack>

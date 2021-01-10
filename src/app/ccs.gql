@@ -1,0 +1,88 @@
+fragment UserIdentification on User {
+    id
+    nickname
+}
+
+fragment ConversationParticipants on Conversation {
+    id
+    initiator {
+        ...UserIdentification
+    }
+    recipient {
+        ...UserIdentification
+    }
+}
+
+fragment SendMessage on Message {
+    sender {
+        ...UserIdentification
+    }
+    text
+}
+
+fragment ConversationMessages on Conversation {
+    messages {
+        id
+        ...SendMessage
+    }
+}
+
+mutation SendNewMessage($message: AddMessageInput!) {
+    addMessage(input: [ $message ]) {
+        numUids
+        message {
+            id
+            sender {
+                ...UserIdentification
+            }
+            text
+        }
+    }
+}
+
+query GetConversationMessages($id: ID!) {
+    getConversation(id: $id) {
+        id
+        ...ConversationMessages
+    }
+}
+
+query GetExistingConversations($id: ID!) {
+    getUser(id: $id) {
+        id
+        initiatedConversations(filter: { and: [ { has: initiator }, { has: recipient } ] }) {
+            ...ConversationParticipants
+        }
+        receivedConversations(filter: { and: [ { has: initiator }, { has: recipient } ] }) {
+            ...ConversationParticipants
+        }
+    }
+}
+
+mutation RequestNewConversation($initiator: UserRef!, $recipient: UserRef!) {
+    addConversation(input: [ { initiator: $initiator, recipient: $recipient, messages: [] } ]) {
+        conversation {
+            id
+            ...ConversationParticipants
+        }
+        numUids
+    }
+}
+
+mutation AddUser($nickname: String!) {
+    addUser(input: [ { nickname: $nickname, initiatedConversations: [], receivedConversations: [] } ]) {
+        user {
+            ...UserIdentification
+        }
+        numUids
+    }
+}
+
+mutation DeleteUser($id: ID!) {
+    deleteUser(filter: { id: [ $id ] } ) {
+        user {
+            ...UserIdentification
+        }
+        numUids
+    }
+}
