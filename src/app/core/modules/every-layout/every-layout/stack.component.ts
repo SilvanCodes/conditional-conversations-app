@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, ViewEncapsulation } from '@angular/core';
+import { setCssVariable } from 'src/app/core/utility';
 
 @Component({
   selector: 'el-stack',
@@ -37,17 +38,11 @@ export class StackComponent {
 
   @Input()
   public set split(value: string) {
-    this.element.nativeElement.style.setProperty(
-      '--stack-split',
-      `var(--${value}, ${value})`
-    );
+    setCssVariable(this.element, '--stack-split', value);
   }
 
   @Input()
   public set margin(value: string) {
-    this.element.nativeElement.style.setProperty(
-      '--stack-margin',
-      `var(--${value}, ${value})`
-    );
+    setCssVariable(this.element, '--stack-margin', value);
   }
 }

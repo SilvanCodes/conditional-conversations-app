@@ -11,7 +11,6 @@
         </ng-container>
     </el-center>
 
-    
     <el-sidebar flexBasis="40%">
         <el-box>
             <el-stack margin="s5">
@@ -24,29 +23,20 @@
                         </label>
                     </el-stack>
                 </div>
+                
                 <div>
-                        <ng-container *ngIf="conversations$ | async as conversations">
+                    <ng-container *ngIf="conversations$ | async as conversations">
 
-                            <!-- <ng-container *ngIf="conversations.error">
-                                <p>Loading conversations failed, sorry.</p>
-                                {{ conversations.error }}
-                            </ng-container>
+                        <el-stack>
 
-                            <ng-container *ngIf="conversations.loading">
-                                <p>Conversations are loading...</p>
-                                {{ conversations.loading }}
-                            </ng-container> -->
+                            <ccs-zoom-box *ngFor="let conversation of conversations" (click)="selectedConversation$.next(conversation)">
+                                <p>From: {{ conversation?.initiator?.nickname }}</p>
+                                <p>To: {{ conversation?.recipient?.nickname }}</p>
+                            </ccs-zoom-box>
 
-                            <el-stack>
+                        </el-stack>
 
-                                <ccs-zoom-box *ngFor="let conversation of conversations" (click)="selectedConversation$.next(conversation)">
-                                    <p>From: {{ conversation?.initiator?.nickname }}</p>
-                                    <p>To: {{ conversation?.recipient?.nickname }}</p>
-                                </ccs-zoom-box>
-
-                            </el-stack>
-
-                        </ng-container>
+                    </ng-container>
 
                 </div>
                 <!-- <div>
@@ -63,6 +53,7 @@
                         <p>test conversation 3</p>
                     </el-stack>
                 </div> -->
+                
             </el-stack>
         </el-box>
         <el-box>

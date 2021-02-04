@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewEncapsulation } from '@angular/core';
-import { setCssVariable } from '../utility';
+import { setCssVariable } from 'src/app/core/utility';
 
 @Component({
   selector: 'el-box',
@@ -11,6 +11,8 @@ import { setCssVariable } from '../utility';
         --box-border: var(--s-5);
         padding: var(--box-padding);
         border: var(--box-border) solid;
+        /* required because default for custom elements is inline */
+        display: block;
       }
     `,
     `

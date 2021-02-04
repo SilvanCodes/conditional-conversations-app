@@ -3,7 +3,7 @@
 /* GLOBALS, DO NOT OVERRIDE IN YOUR STYLES */
 :root {
 	/* ratios for maintaining visual consistency */
-	--ratio: 1.25;
+	--ratio: 1.618;
 	--s-5: calc(var(--s-4) / var(--ratio));
 	--s-4: calc(var(--s-3) / var(--ratio));
 	--s-3: calc(var(--s-2) / var(--ratio));
@@ -20,7 +20,7 @@
 	--zero: 0;
 
 	/* measure width */
-	--measure: 80ch;
+	--measure: 66ch;
 
 	/* color scheme from colorsuplyyy */
 	--color-primary: #c54f1f;
@@ -31,9 +31,6 @@
 * {
 	/* in general calculate from border-box */
 	box-sizing: border-box;
-
-	/* cap max-with for visual elements */
-	/* max-width: var(--measure); */
 
 	/* clear default padding and margin*/
 	margin: 0;
@@ -52,6 +49,7 @@ span {
 	max-width: var(--measure);
 }
 
+/* have initial elements take up all the space */
 html,
 body,
 main {

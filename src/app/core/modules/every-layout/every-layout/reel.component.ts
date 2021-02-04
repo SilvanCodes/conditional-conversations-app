@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewEncapsulation } from '@angular/core';
-import { setCssVariable } from '../utility';
+import { setCssVariable } from 'src/app/core/utility';
 
 @Component({
   selector: 'el-reel',
@@ -9,20 +9,16 @@ import { setCssVariable } from '../utility';
       el-reel {
         --reel-height: auto;
         --reel-margin: var(--s0);
-        /* --border: var(--s-5); */
-        /* --padding: var(--s0); */
+        --reel-flex-basis: auto;
         display: flex;
         overflow-x: auto;
         overflow-y: hidden;
         height: var(--reel-height);
-        /* max-width: 100%; */
-        /* padding: var(--padding); */
-        /* border: var(--border) solid; */
       }
     `,
     `
       el-reel > * {
-        flex: 0 0 auto;
+        flex-basis: var(--reel-flex-basis);
       }
     `,
     `
@@ -47,8 +43,14 @@ export class ReelComponent {
   public set height(value: string) {
     setCssVariable(this.element, '--reel-height', value);
   }
+
   @Input()
   public set margin(value: string) {
     setCssVariable(this.element, '--reel-margin', value);
+  }
+
+  @Input()
+  public set felxBasis(value: string) {
+    setCssVariable(this.element, '--reel-flex-basis', value);
   }
 }

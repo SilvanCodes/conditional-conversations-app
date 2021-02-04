@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, ViewEncapsulation } from '@angular/core';
+import { setCssVariable } from 'src/app/core/utility';
 
 @Component({
   selector: 'el-cluster',
@@ -33,16 +34,10 @@ export class ClusterComponent {
 
   @Input()
   public set margin(value: string) {
-    this.element.nativeElement.style.setProperty(
-      '--cluster-margin',
-      `var(--${value}, ${value})`
-    );
+    setCssVariable(this.element, '--cluster-margin', value);
   }
   @Input()
   public set justifyContent(value: string) {
-    this.element.nativeElement.style.setProperty(
-      '--cluster-justify-content',
-      `var(--${value}, ${value})`
-    );
+    setCssVariable(this.element, '--cluster-justify-content', value);
   }
 }

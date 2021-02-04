@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewEncapsulation } from '@angular/core';
-import { setCssVariable } from '../utility';
+import { setCssVariable } from 'src/app/core/utility';
 
 @Component({
   selector: 'el-sidebar',

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --open",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -27,7 +27,7 @@
     "rxjs": "~6.6.0",
     "subscriptions-transport-ws": "^0.9.18",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2" 
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1100.5",
